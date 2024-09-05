@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+Look at photos to see web app in use.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
