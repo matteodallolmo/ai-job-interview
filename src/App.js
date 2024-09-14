@@ -7,6 +7,8 @@ import Interview from "./screens/Interview";
 import Report from "./screens/Report";
 import Profile from "./screens/Profile";
 import DefaultLayout from "./layout";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const supabaseUrl = "https://twqwiryumiolecfebqtd.supabase.co";
@@ -14,9 +16,12 @@ function App() {
     "REDACTED_SECRET";
   const supabase = createClient(supabaseUrl, supabaseKey);
 
+  const [showSidebar, setShowSidebar] = useState(true);
+
+
   return (
     <Router>
-      <DefaultLayout>
+      <DefaultLayout showSidebar={showSidebar}>
         <Routes>
           <Route
             path="/"
@@ -48,3 +53,4 @@ function App() {
 }
 
 export default App;
+
