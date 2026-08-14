@@ -7,7 +7,7 @@ import { Button, Dialog, DialogPanel } from "@tremor/react";
 
 export default function Profile(props) {
   const openai = new OpenAI({
-    apiKey: "REDACTED_SECRET",
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
   });
 
@@ -199,7 +199,7 @@ export default function Profile(props) {
         setReportString(tempString);
         setOverallScore(Math.round(overall / data[0].interviews.length));
       }
-    } catch (error) { }
+    } catch (error) {}
   }
 
   async function chatWithCoach(userMessage) {
@@ -256,10 +256,13 @@ export default function Profile(props) {
   });
 
   return (
-    <div className="bg-neutral-800 text-white flex-col flex">
-      <div className="flex justify-center">
+    <div
+      className="bg-[#05050D] text-white flex-col pt-1 pb-3"
+      style={{ height: "92vh", width: "100vw" }}
+    >
+      <div className="flex justify-center mt-5">
         <div
-          className="flex-col w-[40vw]"
+          className="flex-col w-[40vw] ml-5"
           onMouseEnter={() => {
             setSelectedDiv("feedback");
           }}
@@ -268,10 +271,11 @@ export default function Profile(props) {
           }}
         >
           <div
-            className={`bg-neutral-700 border-t border-l border-r ${selectedDiv == "feedback"
-              ? "border-neutral-500"
-              : "border-neutral-700"
-              } h-[5vh]`}
+            className={`bg-neutral-700 border-t border-l border-r ${
+              selectedDiv == "feedback"
+                ? "border-neutral-500"
+                : "border-neutral-700"
+            } h-[5vh]`}
             style={{
               borderTopLeftRadius: "10px",
               borderTopRightRadius: "10px",
@@ -282,10 +286,11 @@ export default function Profile(props) {
             <p className="p-2 font-bold">Coach's Report</p>
           </div>
           <div
-            className={`bg-neutral-800 border-l border-r ${selectedDiv == "feedback"
-              ? "border-neutral-500"
-              : "border-neutral-700"
-              } h-[80vh] flex px-5 py-2 overflow-y-auto`}
+            className={`bg-neutral-800 border-l border-r ${
+              selectedDiv == "feedback"
+                ? "border-neutral-500"
+                : "border-neutral-700"
+            } h-[75vh] flex px-5 py-2 overflow-y-auto`}
           >
             <div className="flex-col">
               {scoreDiscussion.map((msg, index) => (
@@ -294,17 +299,19 @@ export default function Profile(props) {
                   dangerouslySetInnerHTML={{
                     __html: msg.content,
                   }}
-                  className={`py-1 whitespace-pre-wrap break-words ${msg.type === "gpt" ? "text-blue-300" : "text-white-300"
-                    }`}
+                  className={`py-1 whitespace-pre-wrap break-words ${
+                    msg.type === "gpt" ? "text-blue-300" : "text-white-300"
+                  }`}
                 ></p>
               ))}
             </div>
           </div>
           <div
-            className={`bg-neutral-800 border-b border-l border-r ${selectedDiv == "feedback"
-              ? "border-neutral-500"
-              : "border-neutral-700"
-              } bottom-0 left-0 w-full p-2 bg-neutral-800`}
+            className={`bg-neutral-800 border-b border-l border-r ${
+              selectedDiv == "feedback"
+                ? "border-neutral-500"
+                : "border-neutral-700"
+            } bottom-0 left-0 w-full p-2 bg-neutral-800`}
             style={{
               borderTopLeftRadius: "0px",
               borderTopRightRadius: "0px",
@@ -341,10 +348,11 @@ export default function Profile(props) {
           }}
         >
           <div
-            className={`bg-neutral-700 border-t border-l border-r ${selectedDiv == "reports"
-              ? "border-neutral-500"
-              : "border-neutral-700"
-              } h-[5vh]`}
+            className={`bg-neutral-700 border-t border-l border-r ${
+              selectedDiv == "reports"
+                ? "border-neutral-500"
+                : "border-neutral-700"
+            } h-[5vh]`}
             style={{
               borderTopLeftRadius: "10px",
               borderTopRightRadius: "10px",
@@ -355,10 +363,11 @@ export default function Profile(props) {
             <p className="p-2 font-bold">Interview Reports</p>
           </div>
           <div
-            className={`bg-neutral-800 border-b border-l border-r ${selectedDiv == "reports"
-              ? "border-neutral-500"
-              : "border-neutral-700"
-              } h-[86vh] flex justify-center overflow-y-auto`}
+            className={`bg-neutral-800 border-b border-l border-r ${
+              selectedDiv == "reports"
+                ? "border-neutral-500"
+                : "border-neutral-700"
+            } h-[82vh] flex justify-center overflow-y-auto`}
             style={{
               borderTopLeftRadius: "0",
               borderTopRightRadius: "0",
@@ -399,12 +408,13 @@ export default function Profile(props) {
                         {formatDate(interview.date)}
                       </p>
                       <p
-                        className={`text-right font-bold ${interview.report.overallScore < 40
-                          ? "text-red-500"
-                          : interview.report.overallScore < 70
+                        className={`text-right font-bold ${
+                          interview.report.overallScore < 40
+                            ? "text-red-500"
+                            : interview.report.overallScore < 70
                             ? "text-orange-500"
                             : "text-green-500"
-                          }`}
+                        }`}
                       >
                         {interview.report.overallScore}
                       </p>
@@ -415,7 +425,7 @@ export default function Profile(props) {
             </div>
           </div>
         </div>
-        <div className="flex-col w-[25vw] ml-3">
+        <div className="flex-col w-[25vw] ml-3 mr-5">
           <div
             className="flex-col"
             onMouseEnter={() => {
@@ -426,10 +436,11 @@ export default function Profile(props) {
             }}
           >
             <div
-              className={`bg-neutral-700 border-t border-l border-r ${selectedDiv == "overall"
-                ? "border-neutral-500"
-                : "border-neutral-700"
-                } h-[5vh]`}
+              className={`bg-neutral-700 border-t border-l border-r ${
+                selectedDiv == "overall"
+                  ? "border-neutral-500"
+                  : "border-neutral-700"
+              } h-[5vh]`}
               style={{
                 borderTopLeftRadius: "10px",
                 borderTopRightRadius: "10px",
@@ -440,10 +451,11 @@ export default function Profile(props) {
               <p className="p-2 font-bold">Overall</p>
             </div>
             <div
-              className={`bg-neutral-800 border-b border-l border-r ${selectedDiv == "overall"
-                ? "border-neutral-500"
-                : "border-neutral-700"
-                } h-[33vh] flex items-center justify-center`}
+              className={`bg-neutral-800 border-b border-l border-r ${
+                selectedDiv == "overall"
+                  ? "border-neutral-500"
+                  : "border-neutral-700"
+              } h-[33vh] flex items-center justify-center`}
               style={{
                 borderTopLeftRadius: "0",
                 borderTopRightRadius: "0",
@@ -473,10 +485,11 @@ export default function Profile(props) {
             }}
           >
             <div
-              className={`bg-neutral-700 border-t border-l border-r mt-3 ${selectedDiv == "practice"
-                ? "border-neutral-500"
-                : "border-neutral-700"
-                } h-[5vh]`}
+              className={`bg-neutral-700 border-t border-l border-r mt-3 ${
+                selectedDiv == "practice"
+                  ? "border-neutral-500"
+                  : "border-neutral-700"
+              } h-[5vh]`}
               style={{
                 borderTopLeftRadius: "10px",
                 borderTopRightRadius: "10px",
@@ -487,10 +500,11 @@ export default function Profile(props) {
               <p className="p-2 font-bold">More Practice</p>
             </div>
             <div
-              className={`bg-neutral-800 border-b border-l border-r ${selectedDiv == "practice"
-                ? "border-neutral-500"
-                : "border-neutral-700"
-                } h-[33vh] flex`}
+              className={`bg-neutral-800 border-b border-l border-r ${
+                selectedDiv == "practice"
+                  ? "border-neutral-500"
+                  : "border-neutral-700"
+              } h-[33vh] flex`}
               style={{
                 borderTopLeftRadius: "0",
                 borderTopRightRadius: "0",
@@ -539,7 +553,7 @@ export default function Profile(props) {
             </div>
           </div>
           <Button
-            className="mt-12 w-full h-[8vh]"
+            className="mt-3 w-full h-[8vh]"
             onClick={() => setOpenModal(true)}
           >
             Start Your Interview
