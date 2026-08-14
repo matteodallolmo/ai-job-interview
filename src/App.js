@@ -2,7 +2,6 @@ import "./App.css";
 import { createClient } from "@supabase/supabase-js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./screens/Login";
-import Home from "./screens/Home";
 import Interview from "./screens/Interview";
 import Report from "./screens/Report";
 import Profile from "./screens/Profile";

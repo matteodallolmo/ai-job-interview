@@ -5,8 +5,6 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { languageOptions } from "../../components/Editor/constants/languageOptions";
 import Compiler from "../../components/Editor/Compiler";
-import gptPic from "../../assets/favicon.png";
-import userPic from "../../assets/user.png";
 
 export default function Interview(props) {
   const openai = new OpenAI({

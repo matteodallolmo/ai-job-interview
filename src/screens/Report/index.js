@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { ProgressCircle, ProgressBar } from "@tremor/react";
 import OpenAI from "openai";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Report(props) {
   const openai = new OpenAI({
@@ -22,7 +22,6 @@ export default function Report(props) {
     return radius;
   }
 
-  const navigate = useNavigate();
   const location = useLocation();
   const { conversationHistory, leetcodeMatches, interviewID } =
     location.state || {};
